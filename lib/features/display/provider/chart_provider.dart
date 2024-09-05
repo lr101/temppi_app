@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:openapi/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:temppi_app/view/display/sub_widgets/line_series_builder.dart';
+import 'package:temppi_app/features/display/sub_widgets/line_series_builder.dart';
 
 part 'chart_provider.g.dart';
 

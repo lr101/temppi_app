@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/api.dart';
 import 'package:temppi_app/provider/api_client/api_client_provider.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
-import 'package:temppi_app/view/display/presentation/display.dart';
+import 'package:temppi_app/features/display/presentation/display.dart';
 
 class DragTile extends ConsumerWidget {
   const DragTile({super.key, required this.sensorDto, required this.index});

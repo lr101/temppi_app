@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:temppi_app/view/menu/presentation/settings.dart';
-import 'package:temppi_app/view/overview/sub_widgets/drag_tile.dart';
+import 'package:temppi_app/features/menu/presentation/settings.dart';
 
 import '../provider/drag_item_provider.dart';
+import '../sub_widgets/drag_tile.dart';
 
 class Overview extends ConsumerStatefulWidget {
   const Overview({super.key});

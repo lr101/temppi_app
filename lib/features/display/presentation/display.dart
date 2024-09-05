@@ -6,9 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:openapi/api.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
-import 'package:temppi_app/view/display/provider/chart_provider.dart';
-import 'package:temppi_app/view/display/data/tick_mark_alg.dart';
-import 'package:temppi_app/view/display/sub_widgets/custom_drop_down_item.dart';
+import 'package:temppi_app/features/display/provider/chart_provider.dart';
+import 'package:temppi_app/features/display/data/tick_mark_alg.dart';
+import 'package:temppi_app/features/display/sub_widgets/custom_drop_down_item.dart';
 
 import '../../../repository/sensor_repository.dart';
 
