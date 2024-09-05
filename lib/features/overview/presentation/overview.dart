@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:temppi_app/features/menu/presentation/settings.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../provider/drag_item_provider.dart';
 import '../sub_widgets/drag_tile.dart';
 
@@ -19,7 +19,7 @@ class _OverviewState extends ConsumerState<Overview> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Temppi"),
+        title: Text(tr("title")),
         actions: [
           IconButton(
             onPressed: _onSettingsPressed,

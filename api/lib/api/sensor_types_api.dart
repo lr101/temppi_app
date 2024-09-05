@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
+
 class SensorTypesApi {
-  SensorTypesApi([ApiClient? apiClient])
-      : apiClient = apiClient ?? defaultApiClient;
+  SensorTypesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -24,12 +24,10 @@ class SensorTypesApi {
   ///
   /// * [int] typeId (required):
   ///   The ID of the sensor type
-  Future<Response> deleteSensorTypeWithHttpInfo(
-    int typeId,
-  ) async {
+  Future<Response> deleteSensorTypeWithHttpInfo(int typeId,) async {
     // ignore: prefer_const_declarations
-    final path =
-        r'/rest/v1/types/{typeId}'.replaceAll('{typeId}', typeId.toString());
+    final path = r'/rest/v1/types/{typeId}'
+      .replaceAll('{typeId}', typeId.toString());
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -39,6 +37,7 @@ class SensorTypesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -57,12 +56,8 @@ class SensorTypesApi {
   ///
   /// * [int] typeId (required):
   ///   The ID of the sensor type
-  Future<void> deleteSensorType(
-    int typeId,
-  ) async {
-    final response = await deleteSensorTypeWithHttpInfo(
-      typeId,
-    );
+  Future<void> deleteSensorType(int typeId,) async {
+    final response = await deleteSensorTypeWithHttpInfo(typeId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -76,12 +71,10 @@ class SensorTypesApi {
   ///
   /// * [int] typeId (required):
   ///   The ID of the sensor type
-  Future<Response> getSensorTypeByIdWithHttpInfo(
-    int typeId,
-  ) async {
+  Future<Response> getSensorTypeByIdWithHttpInfo(int typeId,) async {
     // ignore: prefer_const_declarations
-    final path =
-        r'/rest/v1/types/{typeId}'.replaceAll('{typeId}', typeId.toString());
+    final path = r'/rest/v1/types/{typeId}'
+      .replaceAll('{typeId}', typeId.toString());
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -91,6 +84,7 @@ class SensorTypesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -109,24 +103,17 @@ class SensorTypesApi {
   ///
   /// * [int] typeId (required):
   ///   The ID of the sensor type
-  Future<TypeDto?> getSensorTypeById(
-    int typeId,
-  ) async {
-    final response = await getSensorTypeByIdWithHttpInfo(
-      typeId,
-    );
+  Future<TypeDto?> getSensorTypeById(int typeId,) async {
+    final response = await getSensorTypeByIdWithHttpInfo(typeId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(
-        await _decodeBodyBytes(response),
-        'TypeDto',
-      ) as TypeDto;
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TypeDto',) as TypeDto;
+    
     }
     return null;
   }
@@ -146,6 +133,7 @@ class SensorTypesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -167,13 +155,12 @@ class SensorTypesApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<TypeDto>')
-              as List)
-          .cast<TypeDto>()
-          .toList(growable: false);
+      return (await apiClient.deserializeAsync(responseBody, 'List<TypeDto>') as List)
+        .cast<TypeDto>()
+        .toList(growable: false);
+
     }
     return null;
   }
@@ -186,9 +173,7 @@ class SensorTypesApi {
   ///
   /// * [TypeDto] typeDto (required):
   ///   The sensor type to create
-  Future<Response> postSensorTypeWithHttpInfo(
-    TypeDto typeDto,
-  ) async {
+  Future<Response> postSensorTypeWithHttpInfo(TypeDto typeDto,) async {
     // ignore: prefer_const_declarations
     final path = r'/rest/v1/types';
 
@@ -200,6 +185,7 @@ class SensorTypesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
+
 
     return apiClient.invokeAPI(
       path,
@@ -218,24 +204,17 @@ class SensorTypesApi {
   ///
   /// * [TypeDto] typeDto (required):
   ///   The sensor type to create
-  Future<TypeDto?> postSensorType(
-    TypeDto typeDto,
-  ) async {
-    final response = await postSensorTypeWithHttpInfo(
-      typeDto,
-    );
+  Future<TypeDto?> postSensorType(TypeDto typeDto,) async {
+    final response = await postSensorTypeWithHttpInfo(typeDto,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(
-        await _decodeBodyBytes(response),
-        'TypeDto',
-      ) as TypeDto;
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TypeDto',) as TypeDto;
+    
     }
     return null;
   }
@@ -248,9 +227,7 @@ class SensorTypesApi {
   ///
   /// * [TypeDto] typeDto (required):
   ///   The sensor type to update
-  Future<Response> putSensorTypeWithHttpInfo(
-    TypeDto typeDto,
-  ) async {
+  Future<Response> putSensorTypeWithHttpInfo(TypeDto typeDto,) async {
     // ignore: prefer_const_declarations
     final path = r'/rest/v1/types/{typeId}';
 
@@ -262,6 +239,7 @@ class SensorTypesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
+
 
     return apiClient.invokeAPI(
       path,
@@ -280,24 +258,17 @@ class SensorTypesApi {
   ///
   /// * [TypeDto] typeDto (required):
   ///   The sensor type to update
-  Future<TypeDto?> putSensorType(
-    TypeDto typeDto,
-  ) async {
-    final response = await putSensorTypeWithHttpInfo(
-      typeDto,
-    );
+  Future<TypeDto?> putSensorType(TypeDto typeDto,) async {
+    final response = await putSensorTypeWithHttpInfo(typeDto,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(
-        await _decodeBodyBytes(response),
-        'TypeDto',
-      ) as TypeDto;
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TypeDto',) as TypeDto;
+    
     }
     return null;
   }

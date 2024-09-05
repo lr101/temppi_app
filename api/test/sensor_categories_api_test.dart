@@ -11,6 +11,7 @@
 import 'package:openapi/api.dart';
 import 'package:test/test.dart';
 
+
 /// tests for SensorCategoriesApi
 void main() {
   // final instance = SensorCategoriesApi();
@@ -50,5 +51,6 @@ void main() {
     test('test updateSensorCategory', () async {
       // TODO
     });
+
   });
 }

@@ -36,15 +36,15 @@ class EntryDto {
   double? value;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EntryDto && other.timestamp == timestamp && other.value == value;
+  bool operator ==(Object other) => identical(this, other) || other is EntryDto &&
+    other.timestamp == timestamp &&
+    other.value == value;
 
   @override
   int get hashCode =>
-      // ignore: unnecessary_parenthesis
-      (timestamp == null ? 0 : timestamp!.hashCode) +
-      (value == null ? 0 : value!.hashCode);
+    // ignore: unnecessary_parenthesis
+    (timestamp == null ? 0 : timestamp!.hashCode) +
+    (value == null ? 0 : value!.hashCode);
 
   @override
   String toString() => 'EntryDto[timestamp=$timestamp, value=$value]';
@@ -76,10 +76,8 @@ class EntryDto {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key),
-              'Required key "EntryDto[$key]" is missing from JSON.');
-          assert(json[key] != null,
-              'Required key "EntryDto[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "EntryDto[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "EntryDto[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -92,10 +90,7 @@ class EntryDto {
     return null;
   }
 
-  static List<EntryDto> listFromJson(
-    dynamic json, {
-    bool growable = false,
-  }) {
+  static List<EntryDto> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <EntryDto>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -123,24 +118,20 @@ class EntryDto {
   }
 
   // maps a json object with a list of EntryDto-objects as value to a dart map
-  static Map<String, List<EntryDto>> mapListFromJson(
-    dynamic json, {
-    bool growable = false,
-  }) {
+  static Map<String, List<EntryDto>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<EntryDto>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EntryDto.listFromJson(
-          entry.value,
-          growable: growable,
-        );
+        map[entry.key] = EntryDto.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{};
+  static const requiredKeys = <String>{
+  };
 }
+

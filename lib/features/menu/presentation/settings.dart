@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../repository/settings_repository.dart';
 
@@ -20,31 +21,32 @@ class _SettingsState extends ConsumerState<Settings> {
   Widget build(BuildContext context) {
     final url = ref.watch(baseUrlProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text("Settings")),
+      appBar: AppBar(title: Text(tr('settings_title'))),
       body: SettingsList(
         sections: [
           SettingsSection(
-            title: const Text('Common'),
+            title: Text(tr('common')),
             tiles: <SettingsTile>[
               SettingsTile.navigation(
                 leading: const Icon(Icons.language),
-                title: const Text('Language'),
-                value: const Text('English'),
+                title: Text(tr('language')),
+                value: Text(tr('current_language')),
               ),
               SettingsTile.switchTile(
                 onToggle: (value) =>
                     ref.read(themeModeStateProvider.notifier).toggle(value),
                 initialValue:
-                    ref.watch(themeModeStateProvider) == ThemeMode.dark,
+                ref.watch(themeModeStateProvider) == ThemeMode.dark,
                 leading: const Icon(Icons.mode_night),
-                title: const Text('Change theme'),
+                title: Text(tr('change_theme')),
               ),
               SettingsTile.navigation(
-                  leading: const Icon(Icons
-                      .signal_wifi_statusbar_connected_no_internet_4_sharp),
-                  title: const Text('Server URL'),
-                  onPressed: (c) => _displayTextInputDialog(c),
-                  value: Text(url)),
+                leading: const Icon(Icons
+                    .signal_wifi_statusbar_connected_no_internet_4_sharp),
+                title: Text(tr('server_url')),
+                onPressed: (c) => _displayTextInputDialog(c),
+                value: Text(url),
+              ),
             ],
           ),
         ],
@@ -57,21 +59,22 @@ class _SettingsState extends ConsumerState<Settings> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('TextField in Dialog'),
+          title: Text(tr('dialog_title')),
           content: TextFormField(
             controller: _textFieldController,
             validator: ValidationBuilder().url().build(),
-            decoration: const InputDecoration(
-                hintText: "Enter a URL (ex: http://localhost:8080)"),
+            decoration: InputDecoration(
+              hintText: tr('enter_url_hint'),
+            ),
           ),
           actions: <Widget>[
             MaterialButton(
-              child: const Text('CANCEL'),
-              onPressed: () => Navigator.pop(context)
+              child: Text(tr('cancel')),
+              onPressed: () => Navigator.pop(context),
             ),
             MaterialButton(
               onPressed: _onAlertOk,
-              child: const Text('OK')
+              child: Text(tr('ok')),
             ),
           ],
         );
@@ -85,5 +88,4 @@ class _SettingsState extends ConsumerState<Settings> {
       Navigator.pop(context);
     }
   }
-
 }

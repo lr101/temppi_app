@@ -9,7 +9,7 @@ import 'package:temppi_app/provider/theme/theme_provider.dart';
 import 'package:temppi_app/features/display/provider/chart_provider.dart';
 import 'package:temppi_app/features/display/data/tick_mark_alg.dart';
 import 'package:temppi_app/features/display/sub_widgets/custom_drop_down_item.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../../../repository/sensor_repository.dart';
 
 class Display extends ConsumerStatefulWidget {
@@ -25,30 +25,30 @@ class _DisplayState extends ConsumerState<Display> {
   final controller = MultiSelectController<SensorDto>();
 
   final _dropDownList = [
-    const DropdownMenuItem(
-        value: 60, alignment: Alignment.center, child: Text("last 1 hour")),
-    const DropdownMenuItem(
+    DropdownMenuItem(
+        value: 60, alignment: Alignment.center, child: Text(tr("1h"))),
+    DropdownMenuItem(
         value: 60 * 12,
         alignment: Alignment.center,
-        child: Text("last 12 hours")),
-    const DropdownMenuItem(
-        value: 60 * 24, alignment: Alignment.center, child: Text("last 1 day")),
-    const DropdownMenuItem(
+        child: Text(tr("12h"))),
+    DropdownMenuItem(
+        value: 60 * 24, alignment: Alignment.center, child: Text(tr("1d"))),
+    DropdownMenuItem(
         value: 60 * 24 * 3,
         alignment: Alignment.center,
-        child: Text("last 3 days")),
-    const DropdownMenuItem(
+        child: Text(tr("3d"))),
+    DropdownMenuItem(
         value: 60 * 24 * 7,
         alignment: Alignment.center,
-        child: Text("last 7 days")),
-    const DropdownMenuItem(
+        child: Text(tr("7d"))),
+    DropdownMenuItem(
         value: 60 * 24 * 30,
         alignment: Alignment.center,
-        child: Text("last 1 month")),
-    const DropdownMenuItem(
+        child: Text(tr("1m"))),
+    DropdownMenuItem(
         value: 0,
         alignment: Alignment.center,
-        child: Text("Custom time range")),
+        child: Text(tr("timeRange"))),
   ];
 
   @override
@@ -69,7 +69,7 @@ class _DisplayState extends ConsumerState<Display> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Display Chart'),
+          title: Text(tr("dataChartTitle")),
         ),
         body: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
@@ -94,7 +94,7 @@ class _DisplayState extends ConsumerState<Display> {
                             _dropDownList.last = DropdownMenuItem(
                                 value: time,
                                 alignment: Alignment.center,
-                                child: const Text("Custom time range"));
+                                child: Text(tr("timeRange")));
                           }
                           ref
                               .read(selectTimeRangeProvider.notifier)
@@ -129,7 +129,7 @@ class _DisplayState extends ConsumerState<Display> {
                     selectedItemBuilder: selectDropDownItem,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please select a sensor';
+                        return tr("selectSensor");
                       }
                       return null;
                     },
@@ -142,8 +142,8 @@ class _DisplayState extends ConsumerState<Display> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Center(
-                    child: Text("Sensor data chart"),
+                  Center(
+                    child: Text(tr("dataChartTitle")),
                   ),
                   SizedBox.fromSize(
                       size: Size(MediaQuery.of(context).size.width,

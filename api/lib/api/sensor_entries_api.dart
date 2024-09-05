@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
+
 class SensorEntriesApi {
-  SensorEntriesApi([ApiClient? apiClient])
-      : apiClient = apiClient ?? defaultApiClient;
+  SensorEntriesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -30,14 +30,10 @@ class SensorEntriesApi {
   ///
   /// * [DateTime] date2:
   ///   The end date (timestamp) for filtering entries
-  Future<Response> deleteEntryWithHttpInfo(
-    String sensorId, {
-    DateTime? date1,
-    DateTime? date2,
-  }) async {
+  Future<Response> deleteEntryWithHttpInfo(String sensorId, { DateTime? date1, DateTime? date2, }) async {
     // ignore: prefer_const_declarations
-    final path =
-        r'/rest/v1/sensors/{sensorId}/entry'.replaceAll('{sensorId}', sensorId);
+    final path = r'/rest/v1/sensors/{sensorId}/entry'
+      .replaceAll('{sensorId}', sensorId);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -54,6 +50,7 @@ class SensorEntriesApi {
     }
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -78,16 +75,8 @@ class SensorEntriesApi {
   ///
   /// * [DateTime] date2:
   ///   The end date (timestamp) for filtering entries
-  Future<void> deleteEntry(
-    String sensorId, {
-    DateTime? date1,
-    DateTime? date2,
-  }) async {
-    final response = await deleteEntryWithHttpInfo(
-      sensorId,
-      date1: date1,
-      date2: date2,
-    );
+  Future<void> deleteEntry(String sensorId, { DateTime? date1, DateTime? date2, }) async {
+    final response = await deleteEntryWithHttpInfo(sensorId,  date1: date1, date2: date2, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -113,16 +102,10 @@ class SensorEntriesApi {
   ///
   /// * [int] interval:
   ///   The interval for the graph data
-  Future<Response> getEntriesWithHttpInfo(
-    String sensorId, {
-    DateTime? date1,
-    DateTime? date2,
-    int? limit,
-    int? interval,
-  }) async {
+  Future<Response> getEntriesWithHttpInfo(String sensorId, { DateTime? date1, DateTime? date2, int? limit, int? interval, }) async {
     // ignore: prefer_const_declarations
-    final path =
-        r'/rest/v1/sensors/{sensorId}/entry'.replaceAll('{sensorId}', sensorId);
+    final path = r'/rest/v1/sensors/{sensorId}/entry'
+      .replaceAll('{sensorId}', sensorId);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -145,6 +128,7 @@ class SensorEntriesApi {
     }
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -175,33 +159,20 @@ class SensorEntriesApi {
   ///
   /// * [int] interval:
   ///   The interval for the graph data
-  Future<List<EntryDto>?> getEntries(
-    String sensorId, {
-    DateTime? date1,
-    DateTime? date2,
-    int? limit,
-    int? interval,
-  }) async {
-    final response = await getEntriesWithHttpInfo(
-      sensorId,
-      date1: date1,
-      date2: date2,
-      limit: limit,
-      interval: interval,
-    );
+  Future<List<EntryDto>?> getEntries(String sensorId, { DateTime? date1, DateTime? date2, int? limit, int? interval, }) async {
+    final response = await getEntriesWithHttpInfo(sensorId,  date1: date1, date2: date2, limit: limit, interval: interval, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<EntryDto>')
-              as List)
-          .cast<EntryDto>()
-          .toList(growable: false);
+      return (await apiClient.deserializeAsync(responseBody, 'List<EntryDto>') as List)
+        .cast<EntryDto>()
+        .toList(growable: false);
+
     }
     return null;
   }
@@ -217,13 +188,10 @@ class SensorEntriesApi {
   ///
   /// * [EntryDto] entryDto (required):
   ///   The entry to create
-  Future<Response> postEntryWithHttpInfo(
-    String sensorId,
-    EntryDto entryDto,
-  ) async {
+  Future<Response> postEntryWithHttpInfo(String sensorId, EntryDto entryDto,) async {
     // ignore: prefer_const_declarations
-    final path =
-        r'/rest/v1/sensors/{sensorId}/entry'.replaceAll('{sensorId}', sensorId);
+    final path = r'/rest/v1/sensors/{sensorId}/entry'
+      .replaceAll('{sensorId}', sensorId);
 
     // ignore: prefer_final_locals
     Object? postBody = entryDto;
@@ -233,6 +201,7 @@ class SensorEntriesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
+
 
     return apiClient.invokeAPI(
       path,
@@ -254,14 +223,8 @@ class SensorEntriesApi {
   ///
   /// * [EntryDto] entryDto (required):
   ///   The entry to create
-  Future<void> postEntry(
-    String sensorId,
-    EntryDto entryDto,
-  ) async {
-    final response = await postEntryWithHttpInfo(
-      sensorId,
-      entryDto,
-    );
+  Future<void> postEntry(String sensorId, EntryDto entryDto,) async {
+    final response = await postEntryWithHttpInfo(sensorId, entryDto,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

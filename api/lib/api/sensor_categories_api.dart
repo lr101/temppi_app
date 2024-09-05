@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
+
 class SensorCategoriesApi {
-  SensorCategoriesApi([ApiClient? apiClient])
-      : apiClient = apiClient ?? defaultApiClient;
+  SensorCategoriesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -24,9 +24,7 @@ class SensorCategoriesApi {
   ///
   /// * [CategoryDto] categoryDto (required):
   ///   The sensor category to create
-  Future<Response> createSensorCategoryWithHttpInfo(
-    CategoryDto categoryDto,
-  ) async {
+  Future<Response> createSensorCategoryWithHttpInfo(CategoryDto categoryDto,) async {
     // ignore: prefer_const_declarations
     final path = r'/rest/v1/categories';
 
@@ -38,6 +36,7 @@ class SensorCategoriesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
+
 
     return apiClient.invokeAPI(
       path,
@@ -56,24 +55,17 @@ class SensorCategoriesApi {
   ///
   /// * [CategoryDto] categoryDto (required):
   ///   The sensor category to create
-  Future<CategoryDto?> createSensorCategory(
-    CategoryDto categoryDto,
-  ) async {
-    final response = await createSensorCategoryWithHttpInfo(
-      categoryDto,
-    );
+  Future<CategoryDto?> createSensorCategory(CategoryDto categoryDto,) async {
+    final response = await createSensorCategoryWithHttpInfo(categoryDto,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(
-        await _decodeBodyBytes(response),
-        'CategoryDto',
-      ) as CategoryDto;
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CategoryDto',) as CategoryDto;
+    
     }
     return null;
   }
@@ -86,12 +78,10 @@ class SensorCategoriesApi {
   ///
   /// * [int] categoryId (required):
   ///   The ID of the sensor category to delete
-  Future<Response> deleteSensorCategoryWithHttpInfo(
-    int categoryId,
-  ) async {
+  Future<Response> deleteSensorCategoryWithHttpInfo(int categoryId,) async {
     // ignore: prefer_const_declarations
     final path = r'/rest/v1/categories/{categoryId}'
-        .replaceAll('{categoryId}', categoryId.toString());
+      .replaceAll('{categoryId}', categoryId.toString());
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -101,6 +91,7 @@ class SensorCategoriesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -119,12 +110,8 @@ class SensorCategoriesApi {
   ///
   /// * [int] categoryId (required):
   ///   The ID of the sensor category to delete
-  Future<void> deleteSensorCategory(
-    int categoryId,
-  ) async {
-    final response = await deleteSensorCategoryWithHttpInfo(
-      categoryId,
-    );
+  Future<void> deleteSensorCategory(int categoryId,) async {
+    final response = await deleteSensorCategoryWithHttpInfo(categoryId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -146,6 +133,7 @@ class SensorCategoriesApi {
 
     const contentTypes = <String>[];
 
+
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -166,13 +154,12 @@ class SensorCategoriesApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(
-              responseBody, 'List<CategoryDto>') as List)
-          .cast<CategoryDto>()
-          .toList(growable: false);
+      return (await apiClient.deserializeAsync(responseBody, 'List<CategoryDto>') as List)
+        .cast<CategoryDto>()
+        .toList(growable: false);
+
     }
     return null;
   }
@@ -185,12 +172,10 @@ class SensorCategoriesApi {
   ///
   /// * [int] categoryId (required):
   ///   The ID of the sensor category to retrieve
-  Future<Response> getSensorCategoryByIdWithHttpInfo(
-    int categoryId,
-  ) async {
+  Future<Response> getSensorCategoryByIdWithHttpInfo(int categoryId,) async {
     // ignore: prefer_const_declarations
     final path = r'/rest/v1/categories/{categoryId}'
-        .replaceAll('{categoryId}', categoryId.toString());
+      .replaceAll('{categoryId}', categoryId.toString());
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -200,6 +185,7 @@ class SensorCategoriesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
+
 
     return apiClient.invokeAPI(
       path,
@@ -218,24 +204,17 @@ class SensorCategoriesApi {
   ///
   /// * [int] categoryId (required):
   ///   The ID of the sensor category to retrieve
-  Future<CategoryDto?> getSensorCategoryById(
-    int categoryId,
-  ) async {
-    final response = await getSensorCategoryByIdWithHttpInfo(
-      categoryId,
-    );
+  Future<CategoryDto?> getSensorCategoryById(int categoryId,) async {
+    final response = await getSensorCategoryByIdWithHttpInfo(categoryId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(
-        await _decodeBodyBytes(response),
-        'CategoryDto',
-      ) as CategoryDto;
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CategoryDto',) as CategoryDto;
+    
     }
     return null;
   }
@@ -251,13 +230,10 @@ class SensorCategoriesApi {
   ///
   /// * [CategoryDto] categoryDto (required):
   ///   The sensor category to update
-  Future<Response> updateSensorCategoryWithHttpInfo(
-    int categoryId,
-    CategoryDto categoryDto,
-  ) async {
+  Future<Response> updateSensorCategoryWithHttpInfo(int categoryId, CategoryDto categoryDto,) async {
     // ignore: prefer_const_declarations
     final path = r'/rest/v1/categories/{categoryId}'
-        .replaceAll('{categoryId}', categoryId.toString());
+      .replaceAll('{categoryId}', categoryId.toString());
 
     // ignore: prefer_final_locals
     Object? postBody = categoryDto;
@@ -267,6 +243,7 @@ class SensorCategoriesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
+
 
     return apiClient.invokeAPI(
       path,
@@ -288,26 +265,17 @@ class SensorCategoriesApi {
   ///
   /// * [CategoryDto] categoryDto (required):
   ///   The sensor category to update
-  Future<CategoryDto?> updateSensorCategory(
-    int categoryId,
-    CategoryDto categoryDto,
-  ) async {
-    final response = await updateSensorCategoryWithHttpInfo(
-      categoryId,
-      categoryDto,
-    );
+  Future<CategoryDto?> updateSensorCategory(int categoryId, CategoryDto categoryDto,) async {
+    final response = await updateSensorCategoryWithHttpInfo(categoryId, categoryDto,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty &&
-        response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(
-        await _decodeBodyBytes(response),
-        'CategoryDto',
-      ) as CategoryDto;
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CategoryDto',) as CategoryDto;
+    
     }
     return null;
   }

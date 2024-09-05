@@ -1,0 +1,23 @@
+{
+  "1h": "letzte 1 Stunde",
+  "12h": "letzte 12 Stunden",
+  "1d": "letzte 1 Tag",
+  "3d": "letzte 3 Tage",
+  "7d": "letzte 7 Tage",
+  "1m": "letzter 1 Monat",
+  "timeRange": "Eigener Zeitrahmen",
+  "selectSensor": "Sensor auswählen",
+  "dataChart": "DatenDiagramm",
+  "dataChartTitle": "Daten Diagramm",
+  "settings_title": "Einstellungen",
+  "common": "Allgemein",
+  "language": "Sprache",
+  "current_language": "Deutsch",
+  "change_theme": "Thema wechseln",
+  "server_url": "Server-URL",
+  "dialog_title": "Textfeld im Dialog",
+  "enter_url_hint": "Geben Sie eine URL ein (z.B. http://localhost:8080)",
+  "cancel": "ABBRECHEN",
+  "ok": "OK",
+  "title": "Temppi"
+}
