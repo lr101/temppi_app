@@ -1,5 +1,4 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 import 'package:openapi/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:temppi_app/view/display/sub_widgets/line_series_builder.dart';
@@ -34,13 +33,14 @@ class SelectedChartSensors extends _$SelectedChartSensors {
 
 @riverpod
 DateTime selectedChartStartTime(SelectedChartStartTimeRef ref) {
-    return DateTime.now().subtract(Duration(minutes: ref.watch(selectTimeRangeProvider)));
-  }
+  return DateTime.now()
+      .subtract(Duration(minutes: ref.watch(selectTimeRangeProvider)));
+}
 
 @riverpod
 DateTime selectedChartEndTime(SelectedChartEndTimeRef ref) {
-    return DateTime.now();
-  }
+  return DateTime.now();
+}
 
 @riverpod
 class SelectTimeRange extends _$SelectTimeRange {

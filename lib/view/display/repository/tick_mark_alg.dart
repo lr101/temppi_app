@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 double getScaleDetails(DateTime min, DateTime max) {
   // Convert DateTime to milliseconds since epoch for easy calculation
   int minMillis = min.millisecondsSinceEpoch;

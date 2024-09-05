@@ -1,7 +1,7 @@
-
 import 'package:openapi/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:temppi_app/provider/repository/repository_providers.dart';
+
+import '../../repository/settings_repository.dart';
 
 part 'api_client_provider.g.dart';
 

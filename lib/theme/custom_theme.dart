@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomThemeData {
@@ -18,7 +17,6 @@ final theme = ThemeData(
   primaryColor: Colors.purpleAccent,
 );
 
-
 /// DARK THEME
 final _customDarkTheme = CustomThemeData();
 final darkTheme = ThemeData(
@@ -28,8 +26,6 @@ final darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.deepPurple,
 );
-
-
 
 extension CustomTheme on ThemeData {
   CustomThemeData get custom =>

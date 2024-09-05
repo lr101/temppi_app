@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:temppi_app/provider/repository/repository_providers.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
+
+import '../../repository/settings_repository.dart';
 
 class Settings extends ConsumerStatefulWidget {
   const Settings({super.key});
@@ -13,8 +14,7 @@ class Settings extends ConsumerStatefulWidget {
 }
 
 class _SettingsState extends ConsumerState<Settings> {
-
-  TextEditingController _textFieldController = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +26,27 @@ class _SettingsState extends ConsumerState<Settings> {
       body: SettingsList(
         sections: [
           SettingsSection(
-            title: Text('Common'),
+            title: const Text('Common'),
             tiles: <SettingsTile>[
               SettingsTile.navigation(
-                leading: Icon(Icons.language),
-                title: Text('Language'),
-                value: Text('English'),
+                leading: const Icon(Icons.language),
+                title: const Text('Language'),
+                value: const Text('English'),
               ),
               SettingsTile.switchTile(
-                onToggle: (value) => ref.read(themeModeStateProvider.notifier).toggle(value),
-                initialValue: ref.watch(themeModeStateProvider) == ThemeMode.dark,
+                onToggle: (value) =>
+                    ref.read(themeModeStateProvider.notifier).toggle(value),
+                initialValue:
+                    ref.watch(themeModeStateProvider) == ThemeMode.dark,
                 leading: const Icon(Icons.mode_night),
                 title: const Text('Change theme'),
               ),
               SettingsTile.navigation(
-                leading: const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_sharp),
-                title: const Text('Server URL'),
-                onPressed: (c) => _displayTextInputDialog(c),
-                value:  Text(url)
-              ),
+                  leading: const Icon(Icons
+                      .signal_wifi_statusbar_connected_no_internet_4_sharp),
+                  title: const Text('Server URL'),
+                  onPressed: (c) => _displayTextInputDialog(c),
+                  value: Text(url)),
             ],
           ),
         ],
@@ -61,7 +63,8 @@ class _SettingsState extends ConsumerState<Settings> {
           content: TextFormField(
             controller: _textFieldController,
             validator: ValidationBuilder().url().build(),
-            decoration: const InputDecoration(hintText: "Enter a URL (ex: http://localhost:8080)"),
+            decoration: const InputDecoration(
+                hintText: "Enter a URL (ex: http://localhost:8080)"),
           ),
           actions: <Widget>[
             MaterialButton(
@@ -74,8 +77,9 @@ class _SettingsState extends ConsumerState<Settings> {
               child: const Text('OK'),
               onPressed: () {
                 if (Uri.parse(_textFieldController.text).isAbsolute) {
-                  ref.read(baseUrlProvider.notifier).updateUrl(
-                      _textFieldController.text);
+                  ref
+                      .read(baseUrlProvider.notifier)
+                      .updateUrl(_textFieldController.text);
                   Navigator.pop(context);
                 }
               },
@@ -85,5 +89,4 @@ class _SettingsState extends ConsumerState<Settings> {
       },
     );
   }
-
 }

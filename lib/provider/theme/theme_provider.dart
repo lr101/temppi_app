@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:temppi_app/provider/shared_preferences/shared_preferences_provider.dart';
@@ -10,11 +8,10 @@ part 'theme_provider.g.dart';
 
 @riverpod
 class ThemeModeState extends _$ThemeModeState {
-
-
   @override
   ThemeMode build() {
-    final themeBool = ref.read(sharedPreferencesProvider).getBool("THEME_STATE");
+    final themeBool =
+        ref.read(sharedPreferencesProvider).getBool("THEME_STATE");
     if (themeBool == null) return ThemeMode.system;
     return themeBool ? ThemeMode.dark : ThemeMode.light;
   }
@@ -24,7 +21,7 @@ class ThemeModeState extends _$ThemeModeState {
     ref.read(sharedPreferencesProvider).setBool("THEME_STATE", value);
   }
 
-  ThemeData getTheme () {
+  ThemeData getTheme() {
     final light = ref.watch(themeDataProvider);
     final dark = ref.watch(darkThemeDataProvider);
     return state == ThemeMode.dark ? dark : light;

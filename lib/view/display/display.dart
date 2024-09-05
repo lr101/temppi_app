@@ -1,17 +1,15 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:openapi/api.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
 import 'package:temppi_app/view/display/provider/chart_provider.dart';
 import 'package:temppi_app/view/display/repository/tick_mark_alg.dart';
 import 'package:temppi_app/view/display/sub_widgets/custom_drop_down_item.dart';
-import 'package:temppi_app/view/overview/provider/drag_item_provider.dart';
-import 'package:intl/intl.dart';
-import '../../provider/repository/repository_providers.dart';
+
 import '../../repository/sensor_repository.dart';
 
 class Display extends ConsumerStatefulWidget {

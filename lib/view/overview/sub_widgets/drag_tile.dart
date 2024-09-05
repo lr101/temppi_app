@@ -1,5 +1,3 @@
-import 'package:drag_and_drop_lists/drag_and_drop_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/api.dart';
@@ -16,10 +14,10 @@ class DragTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ColorScheme colorScheme = ref.watch(themeModeStateProvider.notifier).getTheme().colorScheme;
+    final ColorScheme colorScheme =
+        ref.watch(themeModeStateProvider.notifier).getTheme().colorScheme;
     final Color oddItemColor = colorScheme.secondary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.secondary.withOpacity(0.15);
-
 
     return GestureDetector(
       onTap: () => _route(context),
@@ -30,15 +28,20 @@ class DragTile extends ConsumerWidget {
         title: Text('${sensorDto.sensorNick}'),
         trailing: FutureBuilder(
             future: _loudEntries(ref),
-            builder: (context, snapshot) => Text("${snapshot.hasData ? snapshot.data : "..."}", style: const TextStyle(fontSize: 15),)
-        ),
+            builder: (context, snapshot) => Text(
+                  "${snapshot.hasData ? snapshot.data : "..."}",
+                  style: const TextStyle(fontSize: 15),
+                )),
       ),
     );
   }
-  
+
   Future<String> _loudEntries(WidgetRef ref) async {
-    final entries = await ref.watch(sensorEntriesApiProvider).getEntries(sensorDto.sensorId!, date2: DateTime.now().subtract(const Duration(minutes: 10)), limit: 1);
-    if (entries != null &&entries.isNotEmpty) {
+    final entries = await ref.watch(sensorEntriesApiProvider).getEntries(
+        sensorDto.sensorId!,
+        date2: DateTime.now().subtract(const Duration(minutes: 10)),
+        limit: 1);
+    if (entries != null && entries.isNotEmpty) {
       return "${entries[0].value}${sensorDto.sensorType?.description}";
     } else {
       return "---";
@@ -51,5 +54,4 @@ class DragTile extends ConsumerWidget {
       MaterialPageRoute(builder: (context) => Display(sensorDto)),
     );
   }
-
 }

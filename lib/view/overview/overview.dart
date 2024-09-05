@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:temppi_app/view/menu/settings.dart';
 import 'package:temppi_app/view/overview/sub_widgets/drag_tile.dart';
 
-import '../../repository/sensor_repository.dart';
 import 'provider/drag_item_provider.dart';
 
 class Overview extends ConsumerStatefulWidget {
@@ -14,25 +13,29 @@ class Overview extends ConsumerStatefulWidget {
 }
 
 class _OverviewState extends ConsumerState<Overview> {
-
   @override
   Widget build(BuildContext context) {
     final list = ref.watch(dragItemProvider);
-
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Temppi"),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings())),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Settings())),
             icon: const Icon(Icons.settings),
           ),
         ],
       ),
       body: ReorderableListView(
         onReorder: _onListReorder,
-        children: list.asMap().map((index, value) => MapEntry(index, DragTile(key: Key('$index'), sensorDto: value, index: index))).values.toList(),
+        children: list
+            .asMap()
+            .map((index, value) => MapEntry(index,
+                DragTile(key: Key('$index'), sensorDto: value, index: index)))
+            .values
+            .toList(),
       ),
     );
   }
@@ -46,5 +49,4 @@ class _OverviewState extends ConsumerState<Overview> {
     list.insert(newListIndex, movedList);
     ref.read(dragItemProvider.notifier).update(list);
   }
-
 }
