@@ -10,6 +10,8 @@ class SettingsRepository {
 
   final Ref ref;
 
+  final String baseUrl = 'http://192.168.0.82:8081';
+
   String getBaseUrl() {
     final sharedPreferences = ref.read(sharedPreferencesProvider);
     return sharedPreferences.getString(baseUrlKey) ?? baseUrl;
@@ -21,8 +23,7 @@ class SettingsRepository {
   }
 }
 
-const String baseUrlKey = 'BASE_URL';
-const String baseUrl = 'http://192.168.0.82:8081';
+
 
 @Riverpod(keepAlive: true)
 SettingsRepository settingsRepository(SettingsRepositoryRef ref) {

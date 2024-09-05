@@ -7,10 +7,10 @@ import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:openapi/api.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
 import 'package:temppi_app/view/display/provider/chart_provider.dart';
-import 'package:temppi_app/view/display/repository/tick_mark_alg.dart';
+import 'package:temppi_app/view/display/data/tick_mark_alg.dart';
 import 'package:temppi_app/view/display/sub_widgets/custom_drop_down_item.dart';
 
-import '../../repository/sensor_repository.dart';
+import '../../../repository/sensor_repository.dart';
 
 class Display extends ConsumerStatefulWidget {
   const Display(this.sensor, {super.key});

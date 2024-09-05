@@ -16,7 +16,7 @@ class DragItem extends _$DragItem {
             List<SensorDto> returnList = [];
             final list = ref
                     .watch(sharedPreferencesProvider)
-                    .getStringList("SENSOR_DRAG_LIST") ??
+                    .getStringList(sensorDragListKey) ??
                 [];
             for (String sensorId in list) {
               final sensor =
@@ -28,7 +28,7 @@ class DragItem extends _$DragItem {
             }
             returnList.addAll(newItems);
             ref.read(sharedPreferencesProvider).setStringList(
-                "SENSOR_DRAG_LIST",
+                sensorDragListKey,
                 returnList.map((e) => e.sensorId!).toList());
             return returnList;
           },
@@ -39,7 +39,6 @@ class DragItem extends _$DragItem {
 
   void update(List<SensorDto> list) {
     state = [...list];
-    ref.read(sharedPreferencesProvider).setStringList(
-        "SENSOR_DRAG_LIST", state.map((e) => e.sensorId!).toList());
+    ref.read(sharedPreferencesProvider).setStringList(sensorDragListKey, state.map((e) => e.sensorId!).toList());
   }
 }

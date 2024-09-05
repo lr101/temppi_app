@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:temppi_app/view/menu/settings.dart';
+import 'package:temppi_app/view/menu/presentation/settings.dart';
 import 'package:temppi_app/view/overview/sub_widgets/drag_tile.dart';
 
-import 'provider/drag_item_provider.dart';
+import '../provider/drag_item_provider.dart';
 
 class Overview extends ConsumerStatefulWidget {
   const Overview({super.key});
@@ -22,8 +22,7 @@ class _OverviewState extends ConsumerState<Overview> {
         title: const Text("Temppi"),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Settings())),
+            onPressed: _onSettingsPressed,
             icon: const Icon(Icons.settings),
           ),
         ],
@@ -39,6 +38,11 @@ class _OverviewState extends ConsumerState<Overview> {
       ),
     );
   }
+
+  void _onSettingsPressed() => Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Settings())
+  );
 
   void _onListReorder(int oldListIndex, int newListIndex) {
     final list = ref.read(dragItemProvider);

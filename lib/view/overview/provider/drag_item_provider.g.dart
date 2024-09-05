@@ -6,7 +6,7 @@ part of 'drag_item_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dragItemHash() => r'8163fc4258e54164a857514026611e0cb4eacb4a';
+String _$dragItemHash() => r'e29e46266378836d52303b556f7bd04a69d8236f';
 
 /// See also [DragItem].
 @ProviderFor(DragItem)

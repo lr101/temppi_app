@@ -11,14 +11,14 @@ class ThemeModeState extends _$ThemeModeState {
   @override
   ThemeMode build() {
     final themeBool =
-        ref.read(sharedPreferencesProvider).getBool("THEME_STATE");
+        ref.read(sharedPreferencesProvider).getBool(themeStateKey);
     if (themeBool == null) return ThemeMode.system;
     return themeBool ? ThemeMode.dark : ThemeMode.light;
   }
 
   void toggle(bool value) {
     state = value ? ThemeMode.dark : ThemeMode.light;
-    ref.read(sharedPreferencesProvider).setBool("THEME_STATE", value);
+    ref.read(sharedPreferencesProvider).setBool(themeStateKey, value);
   }
 
   ThemeData getTheme() {

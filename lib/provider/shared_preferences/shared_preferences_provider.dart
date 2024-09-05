@@ -6,3 +6,7 @@ part 'shared_preferences_provider.g.dart';
 @riverpod
 SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
     throw UnimplementedError();
+
+const String baseUrlKey = 'BASE_URL';
+const String sensorDragListKey = "SENSOR_DRAG_LIST";
+const String themeStateKey = "THEME_STATE";

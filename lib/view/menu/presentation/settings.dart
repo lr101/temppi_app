@@ -4,7 +4,7 @@ import 'package:form_validator/form_validator.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
 
-import '../../repository/settings_repository.dart';
+import '../../../repository/settings_repository.dart';
 
 class Settings extends ConsumerStatefulWidget {
   const Settings({super.key});
@@ -20,9 +20,7 @@ class _SettingsState extends ConsumerState<Settings> {
   Widget build(BuildContext context) {
     final url = ref.watch(baseUrlProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-      ),
+      appBar: AppBar(title: const Text("Settings")),
       body: SettingsList(
         sections: [
           SettingsSection(
@@ -69,24 +67,23 @@ class _SettingsState extends ConsumerState<Settings> {
           actions: <Widget>[
             MaterialButton(
               child: const Text('CANCEL'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: () => Navigator.pop(context)
             ),
             MaterialButton(
-              child: const Text('OK'),
-              onPressed: () {
-                if (Uri.parse(_textFieldController.text).isAbsolute) {
-                  ref
-                      .read(baseUrlProvider.notifier)
-                      .updateUrl(_textFieldController.text);
-                  Navigator.pop(context);
-                }
-              },
+              onPressed: _onAlertOk,
+              child: const Text('OK')
             ),
           ],
         );
       },
     );
   }
+
+  void _onAlertOk() {
+    if (Uri.parse(_textFieldController.text).isAbsolute) {
+      ref.read(baseUrlProvider.notifier).updateUrl(_textFieldController.text);
+      Navigator.pop(context);
+    }
+  }
+
 }

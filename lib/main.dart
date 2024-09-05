@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:temppi_app/provider/shared_preferences/shared_preferences_provider.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
-import 'package:temppi_app/view/overview/overview.dart';
+import 'package:temppi_app/view/overview/presentation/overview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

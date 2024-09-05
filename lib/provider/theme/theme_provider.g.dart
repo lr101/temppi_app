@@ -35,7 +35,7 @@ final darkThemeDataProvider = AutoDisposeProvider<ThemeData>.internal(
 );
 
 typedef DarkThemeDataRef = AutoDisposeProviderRef<ThemeData>;
-String _$themeModeStateHash() => r'beb67fd58152b75d33ac23ee38e891b75e37b68d';
+String _$themeModeStateHash() => r'fbcc2e8fbde6d1ae34771e522b4f17709bdc97d2';
 
 /// See also [ThemeModeState].
 @ProviderFor(ThemeModeState)
