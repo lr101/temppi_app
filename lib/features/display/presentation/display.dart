@@ -73,7 +73,9 @@ class _DisplayState extends ConsumerState<Display> {
         ),
         body: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
-            child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
                 child: Form(
@@ -191,7 +193,7 @@ class _DisplayState extends ConsumerState<Display> {
                           curve: Curves.linear,
                         ),
                       ))
-                ])))));
+                ]))))));
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {

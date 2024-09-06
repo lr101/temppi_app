@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:temppi_app/provider/language/language.dart';
 import 'package:temppi_app/provider/theme/theme_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -19,6 +20,7 @@ class _SettingsState extends ConsumerState<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final currentLocale = ref.watch(languageProvider);
     final url = ref.watch(baseUrlProvider);
     return Scaffold(
       appBar: AppBar(title: Text(tr('settings_title'))),
@@ -30,7 +32,8 @@ class _SettingsState extends ConsumerState<Settings> {
               SettingsTile.navigation(
                 leading: const Icon(Icons.language),
                 title: Text(tr('language')),
-                value: Text(tr('current_language')),
+                value: Text(currentLocale == const Locale('en') ? 'English' : 'Deutsch'),
+                onPressed: (context) => _showLanguageDialog(context),
               ),
               SettingsTile.switchTile(
                 onToggle: (value) =>
@@ -52,6 +55,31 @@ class _SettingsState extends ConsumerState<Settings> {
         ],
       ),
     );
+  }
+
+  Future<void> _showLanguageDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(tr('select_language')),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: supportedLocales.map((e) => ListTile(title: Text(e.languageCode),
+              onTap: () {
+                _changeLanguage(context, e);
+              },)).toList()
+          ),
+        );
+      },
+    );
+  }
+
+  // Method to change the app language
+  void _changeLanguage(BuildContext context, Locale locale) {
+    ref.read(languageProvider.notifier).toggle(locale); // Update the language
+    context.setLocale(locale); // Update locale in the app
+    Navigator.pop(context); // Close the dialog
   }
 
   Future<void> _displayTextInputDialog(BuildContext context) async {

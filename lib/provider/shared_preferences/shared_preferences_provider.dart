@@ -10,3 +10,4 @@ SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
 const String baseUrlKey = 'BASE_URL';
 const String sensorDragListKey = "SENSOR_DRAG_LIST";
 const String themeStateKey = "THEME_STATE";
+const String languageCodeKey = "LANGUAGE_CODE";
